@@ -1,6 +1,6 @@
 import React from "react";
 
-
+import Result from "../presentation/result";
 
 class Results extends React.Component {
 
@@ -12,9 +12,18 @@ class Results extends React.Component {
   render () {
 
     return (
-      <div>
-        <h1>Results container</h1>
-      </div>
+        <div className="row card-panel truncate">
+
+          <div className="row center-align ">
+            <h4>Results</h4>
+          </div>
+
+          <div className="col m12" >
+
+            <Result/>
+
+          </div>
+        </div>
     )
   }
 }

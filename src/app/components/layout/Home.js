@@ -1,36 +1,38 @@
 import React from "react";
 
-import Style from "./styles";
+
 import Search from "../containers/search";
 import Results from "../containers/results";
 import SavedArticles from "../containers/savedArticles";
 
 class Home extends React.Component {
   render () {
-    let style = Style;
+
     return (
         <div>
-
-          <div className="col m12 flow-text" style={style.universal.border}>
-            <h1>This div is 12-columns wide on all screen sizes</h1>
+          <div className="row">
+            <nav>
+              <div className="nav-wrapper">
+                <a href="#" className="brand-logo">NYT Scrubber!</a>
+                <ul id="nav-mobile" className="right hide-on-med-and-down">
+                  <li><a href="sass.html">Sass</a></li>
+                  <li><a href="badges.html">Components</a></li>
+                  <li><a href="collapsible.html">JavaScript</a></li>
+                </ul>
+              </div>
+            </nav>
           </div>
 
-          <div className="container" >
-            <div className="row">
+          <div className="container">
+            {/* Search Component */}
+            <Search />
 
-              <div className=" col m12" style={style.universal.border}>
-                <Search />
-              </div>
+            {/* Result Component */}
+            <Results />
 
-              <div className="col m12" style={style.universal.border}>
-                <Results />
-              </div>
+            {/* Saved-Articles Component */}
+            <SavedArticles />
 
-              <div className="col m12" style={style.universal.border}>
-                <SavedArticles />
-              </div>
-
-            </div>
           </div>
         </div>
 

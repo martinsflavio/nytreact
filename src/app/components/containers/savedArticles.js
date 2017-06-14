@@ -1,6 +1,6 @@
 import React from "react";
 
-
+import Article from "../presentation/article";
 
 class SavedArticles extends React.Component {
 
@@ -12,8 +12,17 @@ class SavedArticles extends React.Component {
   render () {
 
     return (
-        <div>
-          <h1>SavedArticles container</h1>
+        <div className="row card-panel truncate">
+
+          <div className="row center-align ">
+            <h4>Saved Articles</h4>
+          </div>
+
+          <div className="col m12" >
+
+            <Article />
+
+          </div>
         </div>
     )
   }
