@@ -1,1 +1,1 @@
-# nytreact
+# nyt-react
