@@ -3,7 +3,7 @@ import { render } from "react-dom";
 
 
 {/* Importing Components */}
-import Home from "./components/layout/Home";
+import Home from "./components/layout/home";
 
 
 render(<Home />, window.document.getElementById("main"));

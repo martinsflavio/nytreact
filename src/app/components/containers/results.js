@@ -4,26 +4,37 @@ import Result from "../presentation/result";
 
 class Results extends React.Component {
 
-  constructor () {
-    super();
-    this.state = {}
+  constructor (props) {
+    super(props);
+    this.state = {results:[]}
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ results: nextProps.results });
+  }
+
 
   render () {
 
+    const articleElement = this.state.results.map(article => {
+      return ( <Result key={ article._id } storeArticle={ this.props.storeArticle } articleObj={ article } /> )
+    });
+
     return (
-        <div className="row card-panel truncate">
+        <div className="Results container">
+          <div className="row">
 
-          <div className="row center-align ">
-            <h4>Results</h4>
+            <div className="row center-align ">
+              <h4>Results</h4>
+            </div>
+
+            <div className="col m12" >
+              { articleElement }
+            </div>
           </div>
 
-          <div className="col m12" >
-
-            <Result/>
-
-          </div>
         </div>
+
     )
   }
 }

@@ -12,16 +12,18 @@ class SavedArticles extends React.Component {
   render () {
 
     return (
-        <div className="row card-panel truncate">
+        <div className="SavedArticles container">
+          <div className="row card-panel truncate">
 
-          <div className="row center-align ">
-            <h4>Saved Articles</h4>
-          </div>
+            <div className="row center-align ">
+              <h4>Saved Articles</h4>
+            </div>
 
-          <div className="col m12" >
+            <div className="col m12" >
 
-            <Article />
+              <Article />
 
+            </div>
           </div>
         </div>
     )

@@ -1,39 +1,61 @@
 import React from "react";
 
+import SearchForm from './searchForm';
+import Results from './results';
+import Helper from '../utils/helpers';
+const Api = new Helper();
 
 class Search extends React.Component {
-  constructor () {
-    super();
-    this.state = {}
+
+  constructor (props) {
+    super(props);
+    this.state = {
+      search: {
+        topic : '',
+        startYr : '',
+        endYr : '',
+      },
+      searchResults:[],
+    };
+    this.search = this.search.bind(this);
+    this.storeArticle = this.storeArticle.bind(this);
   }
 
+
+  /*custom functions*/
+
+  search(searchInput){
+
+    Api.runQuery(searchInput).then(result => {
+      const articles = result.data.response.docs;
+
+      this.setState({
+        searchResults: articles
+      });
+
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
+  storeArticle(article){
+    Api.saveArticle(article)
+  }
+
+
+
   render () {
+
     return (
-        <div className="row card-panel truncate">
-
-          <div className="col m12">
-            <div className="row center-align">
-              <h4>Search</h4>
-            </div>
-
-            <div className="row">
-              <div className="input-field col s12">
-                <input type="text" id="autocomplete-input" className="autocomplete" />
-                <label v-for="autocomplete-input">Topic</label>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="input-field col s6">
-                <input placeholder="Start Year" id="stat-year" type="date" className="validate" />
-              </div>
-
-              <div className="input-field col s6">
-                <input placeholder="Start Year" id="stat-year" type="date" className="validate" />
-              </div>
-            </div>
+        <div className="Search container">
+          <div className="row card-panel truncate">
+            <SearchForm search={ this.search } />
+          </div>
+          <div className="row card-panel truncate">
+            <Results storeArticle={ this.storeArticle } results={ this.state.searchResults } />
           </div>
         </div>
+
     )
 
   }
@@ -43,3 +65,7 @@ class Search extends React.Component {
 
 
 export default Search;
+
+
+
+
