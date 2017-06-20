@@ -1,6 +1,6 @@
 import React from "react";
 
-import Result from "../presentation/result";
+import Result from "./presentation/result";
 
 class Results extends React.Component {
 

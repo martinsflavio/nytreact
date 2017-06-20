@@ -21,7 +21,6 @@ class Search extends React.Component {
     this.storeArticle = this.storeArticle.bind(this);
   }
 
-
   /*custom functions*/
 
   search(searchInput){

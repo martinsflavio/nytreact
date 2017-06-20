@@ -35,7 +35,7 @@ class NYTApi  {
 
 
   getArticles(){
-
+    return this.axios.get('/api/articles');
   }
 }
 

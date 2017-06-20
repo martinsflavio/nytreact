@@ -19,10 +19,6 @@ const config = {
         } }
     ]
   },
-  /*plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ]*/
 };
 
 module.exports = config;
