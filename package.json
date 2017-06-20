@@ -4,10 +4,11 @@
   "description": "learning react",
   "main": "index.js",
   "scripts": {
-    "start": "rm -rf dist && webpack -d && cp -r src/{index.html,css,js} dist/ && yarn run server",
+
+    "local": "rm -rf dist && webpack -d && cp -r src/{index.html,css,js} public/ && yarn run server",
     "server": " nodemon ./server/bin/www",
-    "build:dev": "webpack -d && cp src/index.html dist/index.html && webpack-dev-server --content-base src/ --inline --hot --port 3000",
-    "build:prod": "webpack -p && cp src/index.html dist/index.html"
+    "react": "webpack -d && cp src/index.html public/index.html && webpack-dev-server --content-base src/ --inline --hot --port 3000",
+    "build:prod": "webpack -p && cp src/index.html public/index.html"
   },
   "keywords": [
     "reactjs"
