@@ -3,7 +3,7 @@ const express = require('express'),
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  response.sendFile(path.resolve(__dirname, '../public/index.html'))
+  response.sendFile(path.resolve(__dirname, '../../public/index.html'))
 });
 
 module.exports = router;
