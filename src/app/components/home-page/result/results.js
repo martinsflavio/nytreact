@@ -17,7 +17,7 @@ class Results extends React.Component {
     });
 
     return (
-        <div className="Results container">
+        <div className="Results">
           <div className="row">
 
             <div className="row center-align ">
