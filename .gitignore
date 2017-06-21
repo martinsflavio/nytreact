@@ -61,5 +61,5 @@ dist
 .env
 .idea/*
 *.xml
-!/.env
+.DS_Store
 /.env
