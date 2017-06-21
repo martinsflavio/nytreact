@@ -1,8 +1,8 @@
 import React from "react";
 
-
-import Search from "../containers/search";
-import SavedArticles from "../containers/savedArticles";
+import Search from "./search/search";
+import Results from "./result/results";
+import SavedArticles from "./savedArticles/savedArticles";
 
 class Home extends React.Component {
   render () {
@@ -20,12 +20,16 @@ class Home extends React.Component {
 
           </div>
 
-          <div className="row">
-            <Search />
-          </div>
-
-          <div className="row">
-            <SavedArticles />
+          <div className="container">
+            <div className="row">
+              <Search/>
+            </div>
+            <div className="row">
+              <Results/>
+            </div>
+            <div className="row">
+              <SavedArticles/>
+            </div>
           </div>
 
         </div>

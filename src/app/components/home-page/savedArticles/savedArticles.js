@@ -1,6 +1,6 @@
 import React from "react";
 
-import Article from "./presentation/article";
+import Article from "./article";
 
 class SavedArticles extends React.Component {
 
