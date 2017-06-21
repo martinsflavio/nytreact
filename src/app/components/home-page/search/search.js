@@ -2,6 +2,7 @@ import React from "react";
 
 import SearchForm from './searchForm';
 import Results from '../result/results';
+import SavedArticles from '../savedArticles/savedArticles';
 import Helper from '../../../utils/helpers';
 const Api = new Helper();
 
@@ -16,13 +17,26 @@ class Search extends React.Component {
         endYr : '',
       },
       searchResults:[],
+      savedArticles:[]
     };
     this.search = this.search.bind(this);
     this.storeArticle = this.storeArticle.bind(this);
+    this.destroyArticle = this.destroyArticle.bind(this);
+  }
+
+  componentDidMount(){
+    Api.getArticles().then(result => {
+      const savedArticles = result.data.body;
+
+      this.setState({
+        savedArticles: savedArticles,
+      });
+
+
+    });
   }
 
   /*custom functions*/
-
   search(searchInput){
 
     Api.runQuery(searchInput).then(result => {
@@ -36,12 +50,12 @@ class Search extends React.Component {
       console.log(err);
     });
   }
-
   storeArticle(article){
-    Api.saveArticle(article)
+    Api.saveArticle(article);
   }
-
-
+  destroyArticle(article){
+    Api.destroyArticle(article);
+  }
 
   render () {
 
@@ -52,6 +66,9 @@ class Search extends React.Component {
           </div>
           <div className="row card-panel truncate">
             <Results storeArticle={ this.storeArticle } results={ this.state.searchResults } />
+          </div>
+          <div className="row card-panel truncate">
+            <SavedArticles destroyArticle={ this.destroyArticle } results={ this.state.savedArticles } />
           </div>
         </div>
 
