@@ -25,10 +25,10 @@ class Article extends React.Component {
                   </a>
                 </div>
                 <div className="card-action">
-                  <span className="left-align"></span>
+                  <span className="left-align">{ this.props.articleObj.date }</span>
                   <div className="right-align">
-                    <button onClick={ this.performDestroyArticle } className="btn waves-effect waves-light " type="submit" name="action">
-                      Save Article
+                    <button onClick={ this.performDestroyArticle } className="btn waves-effect waves-light red" type="submit" name="action">
+                      Delete
                     </button>
                   </div>
 

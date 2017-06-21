@@ -21,24 +21,16 @@ class Search extends React.Component {
     };
     this.search = this.search.bind(this);
     this.storeArticle = this.storeArticle.bind(this);
+    this.getArticles = this.getArticles.bind(this);
     this.destroyArticle = this.destroyArticle.bind(this);
   }
 
   componentDidMount(){
-    Api.getArticles().then(result => {
-      const savedArticles = result.data.body;
-
-      this.setState({
-        savedArticles: savedArticles,
-      });
-
-
-    });
+    this.getArticles();
   }
 
   /*custom functions*/
   search(searchInput){
-
     Api.runQuery(searchInput).then(result => {
       const articles = result.data.response.docs;
 
@@ -50,26 +42,43 @@ class Search extends React.Component {
       console.log(err);
     });
   }
+
   storeArticle(article){
     Api.saveArticle(article);
+    this.getArticles();
   }
+
   destroyArticle(article){
     Api.destroyArticle(article);
+    this.getArticles();
+  }
+
+  getArticles(){
+    Api.getArticles().then(result => {
+      const savedArticles = result.data.body;
+      this.setState({
+        savedArticles: savedArticles,
+      });
+    });
   }
 
   render () {
 
     return (
-        <div className="Search container">
+        <div className="Search">
+
           <div className="row card-panel truncate">
             <SearchForm search={ this.search } />
           </div>
-          <div className="row card-panel truncate">
+
+          <div className={this.state.searchResults.length > 0 ? 'row card-panel truncate' : 'hide'}>
             <Results storeArticle={ this.storeArticle } results={ this.state.searchResults } />
           </div>
-          <div className="row card-panel truncate">
+
+          <div className={this.state.savedArticles.length > 0 ? 'row card-panel truncate' : 'hide'}>
             <SavedArticles destroyArticle={ this.destroyArticle } results={ this.state.savedArticles } />
           </div>
+
         </div>
 
     )

@@ -20438,6 +20438,7 @@
 	    };
 	    _this.search = _this.search.bind(_this);
 	    _this.storeArticle = _this.storeArticle.bind(_this);
+	    _this.getArticles = _this.getArticles.bind(_this);
 	    _this.destroyArticle = _this.destroyArticle.bind(_this);
 	    return _this;
 	  }
@@ -20445,15 +20446,7 @@
 	  _createClass(Search, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this2 = this;
-	
-	      Api.getArticles().then(function (result) {
-	        var savedArticles = result.data.body;
-	
-	        _this2.setState({
-	          savedArticles: savedArticles
-	        });
-	      });
+	      this.getArticles();
 	    }
 	
 	    /*custom functions*/
@@ -20461,12 +20454,12 @@
 	  }, {
 	    key: 'search',
 	    value: function search(searchInput) {
-	      var _this3 = this;
+	      var _this2 = this;
 	
 	      Api.runQuery(searchInput).then(function (result) {
 	        var articles = result.data.response.docs;
 	
-	        _this3.setState({
+	        _this2.setState({
 	          searchResults: articles
 	        });
 	      }).catch(function (err) {
@@ -20477,19 +20470,35 @@
 	    key: 'storeArticle',
 	    value: function storeArticle(article) {
 	      Api.saveArticle(article);
+	      this.getArticles();
 	    }
 	  }, {
 	    key: 'destroyArticle',
 	    value: function destroyArticle(article) {
 	      Api.destroyArticle(article);
+	      this.getArticles();
+	    }
+	  }, {
+	    key: 'getArticles',
+	    value: function getArticles() {
+	      var _this3 = this;
+	
+	      Api.getArticles().then(function (result) {
+	        var savedArticles = result.data.body;
+	        _this3.setState({
+	          savedArticles: savedArticles
+	        });
+	      });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      console.log('search component');
+	      console.log(this.state);
 	
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'Search container' },
+	        { className: 'Search' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row card-panel truncate' },
@@ -20497,12 +20506,12 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'row card-panel truncate' },
+	          { className: this.state.searchResults.length > 0 ? 'row card-panel truncate' : 'hide' },
 	          _react2.default.createElement(_results2.default, { storeArticle: this.storeArticle, results: this.state.searchResults })
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'row card-panel truncate' },
+	          { className: this.state.savedArticles.length > 0 ? 'row card-panel truncate' : 'hide' },
 	          _react2.default.createElement(_savedArticles2.default, { destroyArticle: this.destroyArticle, results: this.state.savedArticles })
 	        )
 	      );
@@ -20686,7 +20695,7 @@
 	
 	      return _react2.default.createElement(
 	        "div",
-	        { className: "Results container" },
+	        { className: "Results" },
 	        _react2.default.createElement(
 	          "div",
 	          { className: "row" },
@@ -20955,14 +20964,18 @@
 	              _react2.default.createElement(
 	                "div",
 	                { className: "card-action" },
-	                _react2.default.createElement("span", { className: "left-align" }),
+	                _react2.default.createElement(
+	                  "span",
+	                  { className: "left-align" },
+	                  this.props.articleObj.date
+	                ),
 	                _react2.default.createElement(
 	                  "div",
 	                  { className: "right-align" },
 	                  _react2.default.createElement(
 	                    "button",
-	                    { onClick: this.performDestroyArticle, className: "btn waves-effect waves-light ", type: "submit", name: "action" },
-	                    "Save Article"
+	                    { onClick: this.performDestroyArticle, className: "btn waves-effect waves-light red", type: "submit", name: "action" },
+	                    "Delete"
 	                  )
 	                )
 	              )
