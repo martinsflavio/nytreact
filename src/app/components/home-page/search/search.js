@@ -1,8 +1,8 @@
 import React from "react";
 
 import SearchForm from './searchForm';
-import Results from './results';
-import Helper from '../utils/helpers';
+import Results from '../result/results';
+import Helper from '../../../utils/helpers';
 const Api = new Helper();
 
 class Search extends React.Component {

@@ -2,12 +2,12 @@
   "name": "nyt-react-app",
   "version": "1.0.0",
   "description": "learning react",
-  "main": "index.js",
+  "main": "public/index.html",
   "scripts": {
-
-    "local": "rm -rf dist && webpack -d && cp -r src/{index.html,css,js} public/ && yarn run server",
-    "server": " nodemon ./server/bin/www",
-    "react": "webpack -d && cp src/index.html public/index.html && webpack-dev-server --content-base src/ --inline --hot --port 3000",
+    "start": "node server/bin/www",
+    "start:local": "rm -rf dist && webpack -d && cp -r src/{index.html,css,js} public/ && yarn run start:server",
+    "start:server": " nodemon ./server/bin/www",
+    "build:react": "webpack -d && cp src/index.html public/index.html && webpack-dev-server --content-base src/ --inline --hot --port 3000",
     "build:prod": "webpack -p && cp src/index.html public/index.html"
   },
   "keywords": [
@@ -23,8 +23,8 @@
     "logger": "^0.0.1",
     "mongoose": "^4.10.6",
     "morgan": "^1.8.2",
-    "react": "^0.14.2",
-    "react-dom": "^0.14.2",
+    "react": "^0.14.9",
+    "react-dom": "^0.14.9",
     "react-router": "^4.1.1",
     "serve-favicon": "^2.4.3"
   },
