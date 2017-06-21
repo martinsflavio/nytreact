@@ -9,8 +9,6 @@ class NYTApi  {
   runQuery(obj){
     let url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
 
-    console.log(this.API_KEY);
-
 
    return  this.axios.get(url, {
      params:{
@@ -23,20 +21,30 @@ class NYTApi  {
   }
 
   saveArticle(article){
+    let url = '/api/articles/create';
     const newArticle = {
       title: article.headline.main,
       url: article.web_url,
     };
-
-    console.log(newArticle);
-
-    return this.axios.post('/api/articles/create', newArticle);
+    return this.axios.post(url, newArticle);
   }
 
 
   getArticles(){
-    return this.axios.get('/api/articles');
+    let url = '/api/articles';
+
+    return this.axios.get(url);
   }
+
+  destroyArticle(article){
+    let url = '/api/articles/destroy';
+    const newArticle = {
+      _id: article._id,
+    };
+
+    return this.axios.delete(url, {params:newArticle});
+  }
+
 }
 
 export default NYTApi;

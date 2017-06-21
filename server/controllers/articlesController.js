@@ -25,9 +25,11 @@ module.exports = {
     })
   },
   destroy (query, cb) {
-    Articles.findOneAndRemove(query, (err, docs) => {
+
+    Articles.findOneAndRemove({_id:query._id}, (err, docs) => {
       this.errorHandler(err,docs, cb);
     })
+
   },
 
   // ERROR HANDLER

@@ -112,6 +112,7 @@ router.put('/:resource/:method', (req, res, next) => {
 
 /* DELETE */
 router.delete('/:resource/:method', (req, res, next) => {
+
   let resource   = req.params.resource;
   let method     = req.params.method;
   let controller = controllers[resource];
@@ -144,6 +145,8 @@ router.delete('/:resource/:method', (req, res, next) => {
   } else {
     return res.status(500).json({message: 'fail', err: 'Invalid Method for POST Request!'});
   }
+
+
 });
 ///////////////////////////////////////////////////
 

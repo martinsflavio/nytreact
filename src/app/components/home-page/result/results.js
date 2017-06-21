@@ -6,17 +6,13 @@ class Results extends React.Component {
 
   constructor (props) {
     super(props);
-    this.state = {results:[]}
-  }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ results: nextProps.results });
   }
 
 
   render () {
 
-    const articleElement = this.state.results.map(article => {
+    const articleElement = this.props.results.map(article => {
       return ( <Result key={ article._id } storeArticle={ this.props.storeArticle } articleObj={ article } /> )
     });
 
